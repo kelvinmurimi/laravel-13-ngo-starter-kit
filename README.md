@@ -39,7 +39,7 @@ A production-ready Laravel 13 starter kit tailored for Non-Governmental Organiza
 
 ### Requirements
 
-- PHP >= 8.3
+- PHP >= 8.4
 - Composer >= 2.x
 - Node.js >= 20.x & npm
 - MySQL 8+ or PostgreSQL 15+
