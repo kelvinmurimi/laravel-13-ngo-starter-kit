@@ -20,3 +20,12 @@ Route::middleware(['auth'])->group(function () {
 
 require __DIR__.'/settings.php';
 require __DIR__.'/admin.php';
+
+// --- Leave management: volunteer portal (access enforced by LeaveRequestPolicy) ---
+Route::prefix('volunteer')->name('volunteer.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('leaves', [\App\Http\Controllers\Volunteer\LeaveRequestController::class, 'index'])->name('leaves.index');
+    Route::get('leaves/create', [\App\Http\Controllers\Volunteer\LeaveRequestController::class, 'create'])->name('leaves.create');
+    Route::post('leaves', [\App\Http\Controllers\Volunteer\LeaveRequestController::class, 'store'])->name('leaves.store');
+    Route::get('leaves/{leave}', [\App\Http\Controllers\Volunteer\LeaveRequestController::class, 'show'])->name('leaves.show');
+    Route::patch('leaves/{leave}/cancel', [\App\Http\Controllers\Volunteer\LeaveRequestController::class, 'cancel'])->name('leaves.cancel');
+});
