@@ -89,4 +89,20 @@ class User extends Authenticatable
 
 
 
+
+    // --- Leave management ---
+    public function leaveRequests(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(LeaveRequest::class);
+    }
+
+    public function isVolunteer(): bool
+    {
+        return $this->volunteers()->exists();
+    }
+
+    public function isStaffMember(): bool
+    {
+        return $this->staff()->exists();
+    }
 }

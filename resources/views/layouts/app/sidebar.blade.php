@@ -56,6 +56,20 @@
                         {{ __('Testimonials') }}
                     </flux:sidebar.item>
                     
+
+                    <!-- Leave management links -->
+                    @if (auth()->user()->isVolunteer())
+                        <flux:sidebar.item icon="calendar-days" :href="route('volunteer.leaves.index')" :current="request()->routeIs('volunteer.leaves.*')" wire:navigate>
+                            {{ __('My Leave') }}
+                        </flux:sidebar.item>
+                    @endif
+
+                    @if (auth()->user()->isStaffMember())
+                        <flux:sidebar.item icon="clipboard-document-check" :href="route('admin.leaves.index')" :current="request()->routeIs('admin.leaves.*')" wire:navigate>
+                            {{ __('Leave Requests') }}
+                        </flux:sidebar.item>
+                    @endif
+
                 </flux:sidebar.group>
             </flux:sidebar.nav>
 

@@ -62,3 +62,11 @@ Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::livewire('testmonials/create', 'testmonials.create')->name('admin.testmonials.create');
     Route::livewire('testmonials/{testmonial}', 'testmonials.edit')->name('admin.testmonials.edit');
 });
+
+/* admin routes for leave requests (access enforced by LeaveRequestPolicy) */
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(function () {
+    Route::get('leaves', [\App\Http\Controllers\Admin\LeaveRequestController::class, 'index'])->name('leaves.index');
+    Route::get('leaves/{leave}', [\App\Http\Controllers\Admin\LeaveRequestController::class, 'show'])->name('leaves.show');
+    Route::patch('leaves/{leave}/approve', [\App\Http\Controllers\Admin\LeaveRequestController::class, 'approve'])->name('leaves.approve');
+    Route::patch('leaves/{leave}/reject', [\App\Http\Controllers\Admin\LeaveRequestController::class, 'reject'])->name('leaves.reject');
+});
