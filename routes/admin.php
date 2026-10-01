@@ -70,3 +70,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'verified'])->group(
     Route::patch('leaves/{leave}/approve', [\App\Http\Controllers\Admin\LeaveRequestController::class, 'approve'])->name('leaves.approve');
     Route::patch('leaves/{leave}/reject', [\App\Http\Controllers\Admin\LeaveRequestController::class, 'reject'])->name('leaves.reject');
 });
+
+/* admin routes for volunteer management */
+Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
+    Route::livewire('volunteers', 'volunteers.index')->name('admin.volunteers.index');
+    Route::livewire('volunteers/hours', 'volunteers.hours')->name('admin.volunteers.hours');
+});
