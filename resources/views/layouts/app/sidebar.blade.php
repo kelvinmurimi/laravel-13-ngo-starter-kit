@@ -57,6 +57,14 @@
                     </flux:sidebar.item>
                     
 
+                    {{-- volunteers links--}}
+                    <flux:sidebar.item icon="heart" :href="route('admin.volunteers.index')" :current="request()->routeIs('admin.volunteers.index')" wire:navigate>
+                        {{ __('Volunteers') }}
+                    </flux:sidebar.item>
+                    <flux:sidebar.item icon="clock" :href="route('admin.volunteers.hours')" :current="request()->routeIs('admin.volunteers.hours')" wire:navigate>
+                        {{ __('Volunteer Hours') }}
+                    </flux:sidebar.item>
+
                     <!-- Leave management links -->
                     @if (auth()->user()->isVolunteer())
                         <flux:sidebar.item icon="calendar-days" :href="route('volunteer.leaves.index')" :current="request()->routeIs('volunteer.leaves.*')" wire:navigate>
